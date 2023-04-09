@@ -3,10 +3,12 @@ export type XO = "X" | "O" | "-";
 export class Game {
   gameBoard: XO[];
   turn: XO;
+  players: XO;
 
   constructor(firstPlayer: XO = "X"){
     this.gameBoard = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
     this.turn = firstPlayer;
+    this.players = "X", "O";
   }
 
   getCells(): XO[] {
@@ -18,24 +20,12 @@ export class Game {
   }
 
   getWinner(): XO {
-    //doesn't matter x or o, if not "-" of course
-    //check all possible row, diagonal or column
-    // - - -
-    // - X - diagonal will be always middle
-    // - - -
-
-    // X - -
-    // X - - row will be always have either 3
-    // X - -
-
-    // X X X
-    // - - - col same as row
-    // - - -
+    //just check for winner
     return "-";
   }
 
   isTie(): boolean {
-    return false;
+    return !this.gameBoard.includes("-");
   }
 
   onClick(i: number): void {
@@ -47,6 +37,7 @@ export class Game {
   }
 
   restart(): void {
-    console.log("restart called");
+    this.gameBoard = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
+    this.turn = "X";
   }
 }
