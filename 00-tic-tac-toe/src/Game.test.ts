@@ -47,7 +47,7 @@ describe("Tic-Tac-Toe", () => {
     expect(game.getTurn()).toBe("X")
 
   });
-  it("Both players should be able to tie the game", () => {
+  it("Players should be able to tie the game", () => {
     const game = new Game();
 
     expect(game.getTurn()).toBe("X");
@@ -85,25 +85,34 @@ describe("Tic-Tac-Toe", () => {
     expect(game.isTie()).toBe(true);
     expect(game.getWinner()).toBe("-");
   });
-  it("Player should win if row is taken", () => {
+  it("If a row is taken, the player should win", () => {
     const game = new Game();
 
     game.onClick(0);
-    game.onClick(9);
+    game.onClick(8);
     game.onClick(1);
+    game.onClick(7);
     game.onClick(2);
-    expect(game.getWinner).toBe("X");
+    expect(game.getCells()).toEqual([
+      'X', 'X', 'X',
+      '-', '-', '-',
+      '-', 'O', 'O'
+    ]);
+    expect(game.getWinner()).toBe("X");
+    expect(game.isTie()).toBe(false);
   });
-  it("Player should win if column is taken", () => {
+  it("If a column is taken, the player should win", () => {
     const game = new Game();
 
-    game.onClick(0);
-    game.onClick(4);
-    game.onClick(7);
+    game.onClick(3);
+    game.onClick(1);
     game.onClick(6);
-    expect(game.getWinner).toBe("X");
+    game.onClick(4);
+    game.onClick(8);
+    game.onClick(7);
+    expect(game.getWinner()).toBe("O");
   });
-  it("Player should win if diagonal is taken", () => {
+  it("If a diagonal is taken, the player should win", () => {
     const game = new Game();
 
     game.onClick(0);
@@ -112,7 +121,7 @@ describe("Tic-Tac-Toe", () => {
     game.onClick(4);
     game.onClick(8);
     game.onClick(6);
-    expect(game.getWinner).toBe("O");
+    expect(game.getWinner()).toBe("O");
   });
 });
 
