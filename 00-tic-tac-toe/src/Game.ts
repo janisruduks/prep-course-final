@@ -1,13 +1,8 @@
 export type XO = "X" | "O" | "-";
 
 export class Game {
-  gameBoard: XO[];
-  turn: XO;
-
-  constructor(firstPlayer: XO = "X"){
-    this.gameBoard = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
-    this.turn = firstPlayer;
-  }
+  gameBoard: XO[] = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
+  turn: XO = "X";
 
   getCells(): XO[] {
     return this.gameBoard;
@@ -17,19 +12,19 @@ export class Game {
     return this.turn;
   }
 
-getWinner(): XO {
-  //https://ibb.co/LdcjJpP
+  getWinner(): XO {
+    //https://ibb.co/LdcjJpP
     const winConditions = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], 
         [0, 3, 6], [1, 4, 7],[2, 5, 8],
         [0, 4, 8], [2, 4, 6]
-        ];
+      ];
 
     const checkForWinner = winConditions.map((winContition) => {
-        if(winContition.every(cell => this.gameBoard[cell] === "X")){
+      //maybe could check last player instead of both x and o
+        if(winContition.every(cell => this.gameBoard[cell] === "X")) {
             return "X";
-        }
-        else if(winContition.every(cell => this.gameBoard[cell] === "O")){
+        }else if(winContition.every(cell => this.gameBoard[cell] === "O")) {
             return "O";
         }else {
             return "-";
@@ -38,13 +33,12 @@ getWinner(): XO {
 
     if(checkForWinner.includes("X")){
       return "X";
-    }
-    else if(checkForWinner.includes("O")){
+    }else if(checkForWinner.includes("O")){
       return "O";
     }else {
       return "-";
     }
-}
+  }
 
   isTie(): boolean {
     return !this.gameBoard.includes("-");

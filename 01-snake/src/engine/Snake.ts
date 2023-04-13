@@ -1,6 +1,8 @@
 import { Cell } from "./Cell";
 import { Direction } from "./Direction";
 
+//https://www.figma.com/file/UFgFcP0uZHutwAn9O0vJai/CODELEX-SNAKE?node-id=0%3A1&t=jVVWmUyW6nU5czHO-1
+
 export class Snake {
   head: Cell = new Cell(2, 0);
   tail: Cell[] = [new Cell(0, 0), new Cell(1, 0)];
