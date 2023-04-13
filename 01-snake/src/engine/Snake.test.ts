@@ -8,4 +8,31 @@ describe("Snake", () => {
     expect(snake.getHead()).toEqual(new Cell(2, 0));
     expect(snake.getTail()).toEqual([new Cell(0, 0), new Cell(1, 0)]);
   });
+  it("should move head in right direction", () => {
+    const snake = new Snake();
+
+    snake.setDirection("Right");
+    snake.move();
+
+    expect(snake.getHead()).toEqual(new Cell(3, 0));
+  });
+  it("Shoulnd't be able to move left if snakes moves right", () => {
+    const snake = new Snake();
+
+    snake.setDirection("Right");
+    snake.move();
+    snake.move()
+    snake.setDirection("Left")
+
+    expect(snake.getHead()).toEqual(new Cell(4, 0));
+  });
+  it("should be able to move down and bend the tail", () => {
+    const snake = new Snake();
+
+    snake.setDirection("Down");
+    snake.move()
+
+    expect(snake.getHead()).toEqual(new Cell(2, 1));
+    expect(snake.getTail()).toEqual([new Cell(1, 0), new Cell(2, 0)]);
+  });
 });
