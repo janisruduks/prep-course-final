@@ -49,7 +49,7 @@ export class Snake {
     this.grow()
   }
 
-
+//fix this asap
   grow() {
    const getApples = new GameField(); 
     for(let i = 0; i < getApples.apples.length; i++){
