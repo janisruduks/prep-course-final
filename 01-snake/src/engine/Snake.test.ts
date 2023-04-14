@@ -37,12 +37,11 @@ describe("Snake", () => {
     expect(snake.getHead()).toEqual(new Cell(2, 1));
     expect(snake.getTail()).toEqual([new Cell(1, 0), new Cell(2, 0)]);
   });
-  it('should grow when it eats an apple', () => { // will need to update this test after seed()
+  it('should grow when it eats an apple', () => { 
     const snake = new Snake();
-    snake.head = new Cell(18, 16); //apple position
     snake.grow();
 
-    expect(snake.tail.length).toBe(3);
+    expect(snake.tail.length).toBe(5);
   });
   it("Shouldn't be able to eat itself", () => {
     const snake = new Snake();

@@ -1,6 +1,5 @@
 import { Cell } from "./Cell";
 import { Direction } from "./Direction";
-import { GameField } from "./GameField";
 
 //https://www.figma.com/file/UFgFcP0uZHutwAn9O0vJai/CODELEX-SNAKE?node-id=0%3A1&t=jVVWmUyW6nU5czHO-1
 
@@ -12,7 +11,7 @@ export class Snake {
   isVert: Boolean = true;
 
   setDirection(direction: Direction) {
-    //needs a fix, spamming keys leads to eating itself
+    // needs a fix, spamming keys leads to eating itself
     if(direction === "Right" && this.isHoriz ){
       this.isHoriz = false
       this.isVert = true;
@@ -33,7 +32,7 @@ export class Snake {
   }
 
   move() {
-    let lastHeadPosition = new Cell(this.head.x, this.head.y);
+    const lastHeadPosition = new Cell(this.head.x, this.head.y);
 
     if (this.direction === "Right"){
       this.head.x++;
@@ -46,22 +45,15 @@ export class Snake {
     }
     this.tail.shift();
     this.tail.push(lastHeadPosition); 
-    this.grow()
   }
 
-//fix this asap
   grow() {
-   const getApples = new GameField(); 
-    for(let i = 0; i < getApples.apples.length; i++){
-      if(this.head.x === getApples.apples[i].x && this.head.y === getApples.apples[0].y){
-        let index = 0;
-        while(index < 3){
-          index++
-          const growing = new Cell(this.tail[this.tail.length -1].x, this.tail[this.tail.length -1].y);
-          this.tail.push(growing);
-        }
-      }
-    }
+    const addingTail: Cell[] = [
+      new Cell(this.tail[0].x, this.tail[0].y),
+      new Cell(this.tail[0].x, this.tail[0].y),
+      new Cell(this.tail[0].x, this.tail[0].y)
+    ];
+    this.tail.unshift(...addingTail);
   }
 
   getHead(): Cell {

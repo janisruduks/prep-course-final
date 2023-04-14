@@ -1,17 +1,22 @@
 import { Cell } from "./Cell";
 
 export class GameField {
-  apples: Cell[]  
+  apples: Cell[] = this.randomizeApples(); 
 
-  constructor(){
-    this.apples = [    
-      new Cell(18, 16),
-      new Cell(20, 16),
-      new Cell(22, 16),
-      new Cell(24, 16) ];
+  randomizeApples(): Cell[] {
+    this.apples = this.apples = [    
+      new Cell(Math.floor(Math.random() * 45), Math.floor(Math.random() * 25)),
+      new Cell(Math.floor(Math.random() * 45), Math.floor(Math.random() * 25)),
+      new Cell(Math.floor(Math.random() * 45), Math.floor(Math.random() * 25)),
+      new Cell(Math.floor(Math.random() * 45), Math.floor(Math.random() * 25)),
+      new Cell(Math.floor(Math.random() * 45), Math.floor(Math.random() * 25)),
+    ];
+    return this.apples
   }
 
-  seed(): void {}
+  seed(): void {
+    this.apples = this.randomizeApples();
+  }
 
   getApples(): Cell[] {
     return this.apples
