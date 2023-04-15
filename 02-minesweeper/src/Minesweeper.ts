@@ -16,42 +16,61 @@ export class Minesweeper {
   }
 
   columnsCount(): number {
-    return 10;
+    return this.level.columns;
+  }
+  rowsCount(): number {
+    return this.level.rows
   }
 
   getCells(): Cell[][] {
-    return [
-      [new Cell(), new Cell(), new Cell()],
-      [new Cell(), new Cell(), new Cell()],
-      [new Cell(), new Cell(), new Cell()]
-    ];
+
+    let cellRow: Cell[] = []
+    let cellCollumn: Cell[][] = []
+    const mine = new Cell();
+
+    for(let i = 0; i < this.columnsCount(); i++){
+      cellRow.push(mine)
+    } for(let index = 0; index < this.rowsCount(); index++){
+      cellCollumn.push(cellRow);
+    }
+    return cellCollumn;
   }
 
-  onLeftMouseDown(x: number, y: number) {}
+  onLeftMouseDown(x: number, y: number) {
+    console.log(x, y)
+  }
 
-  onLeftMouseUp(x: number, y: number) {}
+  onLeftMouseUp(x: number, y: number) {
+    console.log(x, y)
+  }
 
-  onRightMouseUp(x: number, y: number) {}
+  onRightMouseUp(x: number, y: number) {
+    console.log(x, y)
+  }
 
   isTense(): boolean {
-    return true;
+    return false;
   }
 
   timePassed(): number {
+    
     return 999;
   }
 
   minesLeftCount() {
-    return 999;
+    return this.level.mines;
   }
 
   reset() {}
 
   currentLevel(): Level {
-    return this.level;
+    return this.level
   }
 
-  selectLevel(level: Level) {}
+  selectLevel(level: Level) {
+   this.level = level
+   return this.level;
+  }
 
   isLost(): boolean {
     return false;
@@ -65,5 +84,6 @@ export class Minesweeper {
     return false;
   }
 
-  toggleQuestionMarksEnabled() {}
+  toggleQuestionMarksEnabled() {
+  }
 }
