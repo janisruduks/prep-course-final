@@ -1,4 +1,5 @@
 import { Level } from "./levels";
+//https://www.figma.com/file/JBO8gJuuKh1NXpW9EtAEyQ/Untitled?node-id=0%3A1&t=gpwZ4ihQhn1wJr3D-1
 
 export class Cell {
   isOpen: boolean = false;
@@ -18,22 +19,18 @@ export class Minesweeper {
   columnsCount(): number {
     return this.level.columns;
   }
-  rowsCount(): number {
-    return this.level.rows
-  }
 
   getCells(): Cell[][] {
-
-    let cellRow: Cell[] = []
-    let cellCollumn: Cell[][] = []
-    const mine = new Cell();
-
-    for(let i = 0; i < this.columnsCount(); i++){
-      cellRow.push(mine)
-    } for(let index = 0; index < this.rowsCount(); index++){
-      cellCollumn.push(cellRow);
+    let cellCollumns: Cell[][] = [];
+    for (let i = 0; i < this.columnsCount(); i++){
+      let cellRow: Cell[] = [];
+      for(let i = 0; i < this.columnsCount(); i++){
+        const cell = new Cell();
+        cellRow.push(cell);
+      }
+      cellCollumns.push(cellRow);
     }
-    return cellCollumn;
+    return cellCollumns;
   }
 
   onLeftMouseDown(x: number, y: number) {
